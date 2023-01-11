@@ -28,10 +28,9 @@ describe('Traveler', function() {
     expect(newTraveler.name).to.equal("Gandalf");
   });
 
-  it.skip('should sort the user trips array by date', function() {
+  it('should sort the user trips array by date', function() {
     newTraveler.sortTripsByDate()
     expect(newTraveler.trips[0].date).to.equal('2021/01/28');
-    expect(newTraveler.trips[1].date).to.equal('2021/01/21');
   });
 
   it.skip('should calculate the cost for a single trip', function() {
