@@ -8,10 +8,11 @@ import chai from 'chai';
 const expect = chai.expect;
 
 describe('Traveler', function() {
-  this.beforeEach(() => {
-    const traveler1 = {id: 1, name: 'Gandalf', type: 'relaxer'}
-    let newTraveler = new Traveler(traveler1)
+  const traveler1 = {id: 1, name: 'Gandalf', type: 'relaxer'};
+  let newTraveler = new Traveler(traveler1)
+  // let agent = new Agent()
 
+  this.beforeEach(() => {
     tripData.forEach(trip => {
       const newTrip = new Trip(trip)
       newTraveler.trips.push(newTrip)
@@ -23,19 +24,29 @@ describe('Traveler', function() {
     // })
   });
 
-  it.skip('should be an instantiation of Traveler', function() {
-    expect().to.equal();
+  it('should be an instantiation of Traveler', function() {
+    expect(newTraveler.name).to.equal("Gandalf");
   });
 
   it.skip('should sort the user trips array by date', function() {
-    expect().to.equal();
+    newTraveler.sortTripsByDate()
+    expect(newTraveler.trips[0].date).to.equal('2021/01/28');
+    expect(newTraveler.trips[1].date).to.equal('2021/01/21');
   });
 
   it.skip('should calculate the cost for a single trip', function() {
-    expect().to.equal();
+    const thisTrip = newTraveler.trips[0];
+    const tripCost = newTraveler.calculateCostPerTrip(thisTrip, agent.destinations);
+    expect(tripCost).to.equal(5290);
   });
 
   it.skip('should calculate the total spent on trips for a given year', function() {
-    expect().to.equal();
+    const yearBeforeLast = newTraveler.calculateSpending(agent.destinations, 2019);
+    const lastYearSpending = newTraveler.calculateSpending(agent.destinations, 2020);
+    const thisYearSpending = newTraveler.calculateSpending(agent.destinations, 2021);
+
+    expect(yearBeforeLast).to.equal('5,819.00');
+    expect(lastYearSpending).to.equal('6,567.00');
+    expect(thisYearSpending).to.equal('2,398.00');
   });
 });
