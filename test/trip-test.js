@@ -1,6 +1,6 @@
 import tripData from '../src/trip-data';
 import Traveler from '../src/Traveler';
-import Trip from '../src/Trip'
+import Trip from '../src/Trip';
 import chai from 'chai';
 const expect = chai.expect;
 
@@ -11,6 +11,16 @@ describe('Trip', function() {
   const trip4 = tripData[3]
   const trip5 = tripData[4]
   const trip6 = tripData[5]
+  const trip7 = new Trip({
+    id: 132,
+    userID: 42,
+    destinationID: 30,
+    travelers: 5,
+    date: "2020/09/07",
+    duration: 5,
+    status: "pending",
+    suggestedActivities: [ ]
+  })
 
   it('should have an id', function() {
     expect(trip1.id).to.equal(1);
@@ -38,18 +48,21 @@ describe('Trip', function() {
 
   it('should have a status', function() {
     expect(trip1.status).to.deep.equal("approved");
+    expect(trip2.status).to.deep.equal("pending");
   });
 
   it('should have a list of suggested activities', function() {
     expect(trip2.suggestedActivities).to.deep.equal([]);
   });
 
-  it('should have a method to format the trip date', function() {
-    trip3.formatTripDate()
-    expect(trip3.formatTripDate()).to.equal();
-  });
+  // it.skip('should have a method to format the trip date', function() {
+  //   trip3.formatTripDate()
+  //   expect().to.equal();
+  // });
 
-  it.skip('should have a method to determine the trip status', function() {
-    expect().to.equal();
+  it('should have a method to determine the trip status', function() {
+    trip7.checkTripStatus()
+    expect(trip4.status).to.deep.equal("approved");
+    expect(trip7.checkTripStatus()).to.deep.equal("pending");
   });
 });
