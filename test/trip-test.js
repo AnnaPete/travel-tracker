@@ -4,23 +4,23 @@ const expect = chai.expect;
 describe('See if the tests are running', function() {
   this.beforeEach();
 
-  it('', function() {
+  it.skip('', function() {
     expect().to.equal();
   });
 
-  it('', function() {
+  it.skip('', function() {
     expect().to.equal();
   });
 
-  it('', function() {
+  it.skip('', function() {
     expect().to.equal();
   });
 
-  it('', function() {
+  it.skip('', function() {
     expect().to.equal();
   });
 
-  it('', function() {
+  it.skip('', function() {
     expect().to.equal();
   });
 });
