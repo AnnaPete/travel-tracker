@@ -1,61 +1,52 @@
 import tripData from '../src/trip-data';
-import destinationData from '../src/destination-data';
 import Traveler from '../src/Traveler';
 import Trip from '../src/Trip'
-import Destination from '../src/Destination';
 import chai from 'chai';
 const expect = chai.expect;
 
 describe('Trip', function() {
-  this.beforeEach(() => {
-    const traveler1 = {id: 1, name: 'Gandalf', type: 'relaxer'}
-    let newTraveler = new Traveler(traveler1)
+  const trip1 = tripData[0]
+  const trip2 = tripData[1]
+  const trip3 = tripData[2]
+  const trip4 = tripData[3]
+  const trip5 = tripData[4]
+  const trip6 = tripData[5]
 
-    tripData.forEach(trip => {
-      const newTrip = new Trip(trip)
-      newTraveler.trips.push(newTrip)
-    })
-
-    // destinationData.forEach(destination => {
-    //   const newDestination = new Destination(destination)
-    //   agent.destinations.push(newDestination)
-    // })
+  it('should have an id', function() {
+    expect(trip1.id).to.equal(1);
   });
 
-  it.skip('should have an id', function() {
-    expect().to.equal();
+  it('should have a user id', function() {
+    expect(trip2.userID).to.equal(35);
   });
 
-  it.skip('should have a user id', function() {
-    expect().to.equal();
+  it('should have a destination id', function() {
+    expect(trip3.destinationID).to.equal(22);
   });
 
-  it.skip('should have a destination id', function() {
-    expect().to.equal();
+  it('should have a number of travelers', function() {
+    expect(trip4.travelers).to.equal(2);
   });
 
-  it.skip('should have a list of travelers', function() {
-    expect().to.equal();
+  it('should have a date', function() {
+    expect(trip5.date).to.deep.equal("2020/04/30");
   });
 
-  it.skip('should have a date', function() {
-    expect().to.equal();
+  it('should have a duration in days', function() {
+    expect(trip6.duration).to.equal(9);
   });
 
-  it.skip('should have a duration', function() {
-    expect().to.equal();
+  it('should have a status', function() {
+    expect(trip1.status).to.deep.equal("approved");
   });
 
-  it.skip('should have a status', function() {
-    expect().to.equal();
+  it('should have a list of suggested activities', function() {
+    expect(trip2.suggestedActivities).to.deep.equal([]);
   });
 
-  it.skip('should have a list of suggested activities', function() {
-    expect().to.equal();
-  });
-
-  it.skip('should have a method to format the trip date', function() {
-    expect().to.equal();
+  it('should have a method to format the trip date', function() {
+    trip3.formatTripDate()
+    expect(trip3.formatTripDate()).to.equal();
   });
 
   it.skip('should have a method to determine the trip status', function() {
