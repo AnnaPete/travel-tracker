@@ -1,7 +1,7 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-describe('See if the tests are running', function() {
+describe('Agent', function() {
   this.beforeEach();
 
   it.skip('', function() {
