@@ -10,11 +10,17 @@ class Trip {
     this.suggestedActivities = trip.suggestedActivities
   }
 
-  formatTripDate() {
-    
+  // formatTripDate() {
+  //   
+  // }
+
+  checkTripStatus() {
+    if (this.status === 'pending') {
+      return 'pending'
+    } else if (this.status === 'approved') {
+      return 'approved'
+    }
   }
-
-
 }
 
 export default Trip;
