@@ -36,9 +36,9 @@ class Traveler {
   }
 
   calculateCostPerTrip(trip, destinations) {
-    const place = destinations.find(dest => dest.id === trip.destinationID)
-    const totalLodging = place.lodgingCostPerDay * trip.duration
-    const totalFlight = place.flightCostPerPerson
+    const place = destinations.find(destination => destination.id === trip.destinationID)
+    const totalLodging = place.estimatedLodgingCostPerDay * trip.duration
+    const totalFlight = place.estimatedFlightCostPerPerson
     return totalLodging + totalFlight
   }
 }
