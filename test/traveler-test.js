@@ -9,19 +9,21 @@ const expect = chai.expect;
 
 describe('Traveler', function() {
   const traveler1 = {id: 1, name: 'Gandalf', type: 'relaxer'};
-  let newTraveler = new Traveler(traveler1)
-  // let agent = new Agent()
+  let newTraveler
+  let agent
 
   this.beforeEach(() => {
+    newTraveler = new Traveler(traveler1)
+    agent = new Agent()
     tripData.forEach(trip => {
       const newTrip = new Trip(trip)
       newTraveler.trips.push(newTrip)
     })
 
-    // destinationData.forEach(destination => {
-    //   const newDestination = new Destination(destination)
-    //   agent.destinations.push(newDestination)
-    // })
+    destinationData.forEach(destination => {
+      const newDestination = new Destination(destination)
+      agent.destinations.push(newDestination)
+    })
   });
 
   it('should be an instantiation of Traveler', function() {
