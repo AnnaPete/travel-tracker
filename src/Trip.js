@@ -10,10 +10,6 @@ class Trip {
     this.suggestedActivities = trip.suggestedActivities
   }
 
-  // formatTripDate() {
-  //   
-  // }
-
   checkTripStatus() {
     if (this.status === 'pending') {
       return 'pending'
