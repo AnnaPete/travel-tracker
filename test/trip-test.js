@@ -55,11 +55,6 @@ describe('Trip', function() {
     expect(trip2.suggestedActivities).to.deep.equal([]);
   });
 
-  // it.skip('should have a method to format the trip date', function() {
-  //   trip3.formatTripDate()
-  //   expect().to.equal();
-  // });
-
   it('should have a method to determine the trip status', function() {
     trip7.checkTripStatus()
     expect(trip4.status).to.deep.equal("approved");
