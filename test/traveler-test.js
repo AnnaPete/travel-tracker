@@ -35,13 +35,13 @@ describe('Traveler', function() {
     expect(newTraveler.trips[0].date).to.equal('2021/01/28');
   });
 
-  it.skip('should calculate the cost for a single trip', function() {
+  it('should calculate the cost for a single trip', function() {
     const thisTrip = newTraveler.trips[0];
     const tripCost = newTraveler.calculateCostPerTrip(thisTrip, agent.destinations);
     expect(tripCost).to.equal(5290);
   });
 
-  it.skip('should calculate the total spent on trips for a given year', function() {
+  it('should calculate the total spent on trips for a given year', function() {
     const yearBeforeLast = newTraveler.calculateSpending(agent.destinations, 2019);
     const lastYearSpending = newTraveler.calculateSpending(agent.destinations, 2020);
     const thisYearSpending = newTraveler.calculateSpending(agent.destinations, 2021);
