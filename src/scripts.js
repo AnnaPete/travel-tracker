@@ -1,5 +1,5 @@
 import './css/styles.css';
-// import fetchAPI from './api-calls';
+import { fetchAllData, updateAPIData } from './api-calls';
 import Traveler from './Traveler';
 import Agent from './Agent';
 import Trip from './Trip';
@@ -41,15 +41,33 @@ const travelerCard = document.querySelector('.trip-card');
 // GLOBAL VARIABLES
 const currentAgent = new Agent();
 let currentTraveler
+let allTravelers
+let allDestinations
+let allTrips
 
 // EVENT LISTENERS
-
+window.addEventListener('load', getAllData)
 
 // FETCH
+// get
+function getAllData() {
+  Promise.all([fetchAllData('travelers'), fetchAllData('trips'), fetchAllData('destinations')])
+    .then((response) => {
+      allTravelers = response[0]
+      allTrips = response[1]
+      allDestinations = response[2]
+    })
+    .catch((error) => console.log(new Error(error)))
+}
 
+// post
+function updateData(updatedInfo, endpoint) {
+  updateAPIData(updatedInfo, endpoint)
+  getAllData()
+}
 
 // INFORMATION DISPLAY
-
+console.log(getAllData())
 
 // FORM FUNCTIONALITY
 
