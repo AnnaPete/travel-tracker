@@ -1,16 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
-</head>
-<body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
-
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Tracker</title>
+  </head>
+  <body>
+    <img src="./images/turing-logo.png" alt="turing logo">
+    <header class="header">
+      <div class="logo">
+        <img src="" alt="">
+        <h1><span>Travel</span>General</h1>
+      </div>
+      <div class="slogan">
+        <button id="button-logoff" class="button-primary hidden" type="button" name="button">Log Out</button>
+        <h2>You deserve a vacation~</h2>
+      </div>
+    </header>
+    <main class="main-container">
+      <section class="login-page">
+        <section class="login-main">
+          <h2>User Login</h2>
+          <div class="login-body">
+            <article class="login-form">
+              <h3>Traveler Login</h3>
+              <label for="name-traveler">Username</label>
+              <input id="name-traveler" type="text" name="" value="traveler25">
+              <label for="pass-traveler">Password</label>
+              <input id="pass-traveler" type="password" name="" value="travel2020">
+              <button id="button-traveler" class="button-secondary" type="button" name="button">Login</button>
+            </article>
+            <div class="line"></div>
+            <article class="login-form">
+              <h3>Agent Login</h3>
+              <label for="name-agent">Username</label>
+              <input id="name-agent" type="text" name="" value="agency">
+              <label for="pass-agent">Password</label>
+              <input id="pass-agent" type="password" name="" value="travel2020">
+              <button id="button-agent" class="button-secondary" type="button" name="button">Login</button>
+            </article>
+          </div>
+        </section>
+      </section>
+      <section class="dashboard-user hidden">
+        <article class="welcome" id="welcome-user">
+          <h2 id="welcome-message">Welcome </h2>
+          <div class="welcome-spending">
+            <div>
+              <h3>Previous Year Spending:</h3>
+              <p id="spending-previous-amount">$400.55</p>
+            </div>
+            <div>
+              <h3>Current Year Spending:</h3>
+              <p id="spending-present-amount">$400.55</p>
+            </div>
+          </div>
+        </article>
+        <article class="planning-user" id="planning-user">
+          <h2 class="planning-title">Plan a Trip</h2>
+          <form class="planning-form" id="planning-form" action="index.html" method="post">
+            <p id="planning-warning" class="planning-text">Please select a future date and a destination to submit a newtrip</p>
+            <div class="planning-inputs">
+              <div id="input-date" class="form-section">
+                <label for="planning-date">Start Date</label>
+                <input id="planning-date" class="planning-date" type="date" name="start date" value="" required>
+              </div>
+              <div id="input-destination" class="form-section">
+                <label for="planning-destination">Travel Destination</label>
+                <select id="planning-destination" class="planning-dropdown" name="Destination">
+                  <option value="0" disabled selected>Select a Destination</option>
+                </select>
+              </div>
+              <div id="input-duration" class="form-section">
+                <label for="planning-duration">Number of Days</label>
+                <select id="planning-duration" class="planning-dropdown" name="Days" value="Number"></select>
+              </div>
+              <div id="input-travelers" class="form-section">
+                <label for="planning-travelers">Number of Travelers</label>
+                <select id="planning-travelers" class="planning-dropdown" name="Travelers"></select>
+              </div>
+            </div>
+            <h3 id="planning-cost" class="planning-cost">Estimated Cost: $0.00</h3>
+            <div class="planning-bottom">
+              <button id="button-add-trip" class="button-primary" form="planning-form" type="button" name="button"
+                disabled>Add to Trips</button>
+            </div>
+          </form>
+        </article>
+        <section class="trip-user display-previous" id="trip-user">
+          <div class="trip-form">
+            <label for="trip-dropdown">Select Trips to View</label>
+            <select class="trip-dropdown" id="trip-dropdown" name="">
+              <option value="past">Past</option>
+              <option value="upcoming">Upcoming</option>
+              <option value="pending">Pending</option>
+            </select>
+            <p id="trip-dropdown-message">There is nothing to show.</p>
+          </div>
+          <template id="trip-template">
+            <article class="trip-card">
+              <div class="card-header">
+                <h3 class="card-title card-destination">Hawaii</h3>
+                <img class="card-image card-image" src="" alt="">
+              </div>
+              <div class="card-body">
+                <h4 class="card-header">Details</h4>
+                <p class="card-text card-date">Start Date: Jan 10, 2010</p>
+                <p class="card-text card-duration">Duration: 7 Days</p>
+                <p class="card-text card-travelers">Travelers: 3 Adults</p>
+                <h4 class="card-header">Cost Per Person</h4>
+                <p class="card-text card-lodging">Lodging Cost Per Day: $80</p>
+                <p class="card-text card-flight">Flight Cost: $600</p>
+              </div>
+            </article>
+          </template>
+          <article id="trip-past" class="trip-article past">
+            <h2>Past</h2>
+          </article>
+          <article id="trip-present" class="trip-article present">
+            <h2>Present</h2>
+          </article>
+          <article id="trip-upcoming" class="trip-article upcoming">
+            <h2>Upcoming</h2>
+          </article>
+          <article id="trip-pending" class="trip-article pending">
+            <h2>Pending</h2>
+          </article>
+        </section>
+      </section>
+      <section class="dashboard-agent hidden display-trips">
+        <article class="welcome" id="welcome-agent">
+          <h2>Welcome Agent!</h2>
+          <h3>YTD Income:</h3>
+          <p id="welcome-income">$400.55</p>
+          <h3>Today's Travelers:</h3>
+          <ul id="welcome-trips" class="list-unordered"></ul>
+        </article>
+        <div class="traveler-form-container">
+          <div class="traveler-form">
+            <label for="traveler-dropdown">Select View</label>
+            <select class="traveler-dropdown" id="traveler-dropdown" name="">
+              <option value="trips">Pending Trips</option>
+              <option value="travelers">All Travelers</option>
+            </select>
+            <p id="pending-message">There are no pending trips at this time</p>
+          </div>
+        </div>
+        <template id="pending-template">
+          <article class="user-card">
+            <h3 class="pending-name">User Name</h3>
+            <p class="pending-location">Location</p>
+            <p class="pending-date">Start Date</p>
+            <button class="button-secondary button-approve" type="button" name="button">Approve</button>
+            <button class="button-secondary button-delete" type="button" name="button">Delete</button>
+          </article>
+        </template>
+        <article class="pending-article agent-body trips" id="pending-article">
+          <h2>Pending Trips</h2>
+          <div class="pending-cards" id="pending-cards">
+          </div>
+        </article>
+        <article class="planning-agent agent--body travelers" id="planning-agent">
+          <div class="traveler-header">
+            <h2>All Travelers</h2>
+            <div class="traveler-search-box">
+              <label for="traveler-search">Search by Traveler Name</label>
+              <input id="traveler-search" class="traveler-search" type="text" name="" value="" placeholder="Sam Gamgee">
+            </div>
+            <p id="server-error">Unable to access server information at this time. Please check that the server is running and refresh the page.</p>
+          </div>
+          <div class="traveler-cards" id="traveler-cards">
+            <template id="traveler-template">
+              <article class="trip-card">
+                <h3 class="card-title" id="traveler-name">User Name</h3>
+                <h4 class="card-header">All Trips:</h4>
+                <table>
+                  <thead>
+                    <tr>
+                      <td>Location</td>
+                      <td>Status</td>
+                    </tr>
+                  </thead>
+                  <tbody id="traveler-locations"></tbody>
+                </table>
+                <h4 class="card-header">Lifetime Spending:</h4>
+                <p class="card-text" id="traveler-spent">$8000</p>
+              </article>
+            </template>
+          </div>
+        </article>
+      </section>
+    </main>
+    <script src="bundle.js"></script>
+  </body>
 </html>
