@@ -1,32 +1,31 @@
 // GET
-const fetchAllTravelerData = () => {
-
-}
-
-const fetchSingleTravelerData = () => {
-
-}
-
-const fetchTripData = () => {
-
-}
-
-const fetchDestinationData = () => {
-
+function fetchAllData(endpoint) {
+  let fetchedInfo = fetch(`http://localhost:3001/api/v1/${endpoint}`)
+    .then((response) => response.json())
+  return fetchedInfo
 }
 
 // POST
-const addNewTrip = () => {
-
-}
-
-const modifyTrip = () => {
-
+function updateAPIData(newData, endpoint) {
+  const results =   fetch(`http://localhost:3001/api/v1/${endpoint}`, {
+    method: 'POST',
+    body: JSON.stringify(newData), 
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(res.status)
+    }
+    return response.json()
+  }).catch(error => console.log(new Error(error)))
+  return results
 }
 
 // DELETE
-const deleteTrip = () => {
-  
-}
+// const deleteTrip = () => {
+// 
+// }
 
-export default {fetchAPIs};
+export { fetchAllData, updateAPIData }
