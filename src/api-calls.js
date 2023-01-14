@@ -19,13 +19,28 @@ function updateAPIData(newData, endpoint) {
       throw new Error(res.status)
     }
     return response.json()
-  }).catch(error => console.log(new Error(error)))
+  })
+  .catch(error => console.log(new Error(error)))
   return results
 }
 
 // DELETE
-// const deleteTrip = () => {
-// 
-// }
+function deleteData(trip, endpoint) {
+  const deletedInfo =   fetch(`http://localhost:3001/api/v1/${endpoint}`, {
+    method: 'POST',
+    body: JSON.stringify(trip), 
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(res.status)
+    }
+    return response.json()
+  })
+  .catch(error => console.log(new Error(error)))
+  return deletedInfo
+}
 
-export { fetchAllData, updateAPIData }
+export { fetchAllData, updateAPIData, deleteData }
