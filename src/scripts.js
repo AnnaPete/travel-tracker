@@ -1,5 +1,5 @@
 import './css/styles.css';
-import { fetchAllData, updateAPIData } from './api-calls';
+import { fetchAllData, updateAPIData, deleteData } from './api-calls';
 import Traveler from './Traveler';
 import Agent from './Agent';
 import Trip from './Trip';
@@ -49,7 +49,6 @@ let allTrips
 window.addEventListener('load', getAllData)
 
 // FETCH
-// get
 function getAllData() {
   Promise.all([fetchAllData('travelers'), fetchAllData('trips'), fetchAllData('destinations')])
     .then((response) => {
@@ -60,17 +59,25 @@ function getAllData() {
     .catch((error) => console.log(new Error(error)))
 }
 
-// post
+
+// INFORMATION DISPLAY
+
+
+// FORM FUNCTIONALITY
+
+// TRAVELER
+
+
+// AGENT
 function updateData(updatedInfo, endpoint) {
   updateAPIData(updatedInfo, endpoint)
   getAllData()
 }
 
-// INFORMATION DISPLAY
-console.log(getAllData())
-
-// FORM FUNCTIONALITY
-
+function deleteTrip(trip, endpoint) {
+  deleteData(trip, endpoint)
+  getAllData()
+}
 
 // LOGIN/LOGOUT 
 

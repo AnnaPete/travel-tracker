@@ -27,7 +27,7 @@ function updateAPIData(newData, endpoint) {
 // DELETE
 function deleteData(trip, endpoint) {
   const deletedInfo =   fetch(`http://localhost:3001/api/v1/${endpoint}`, {
-    method: 'POST',
+    method: 'DELETE',
     body: JSON.stringify(trip), 
     headers: {
       'Content-Type': 'application/json'
