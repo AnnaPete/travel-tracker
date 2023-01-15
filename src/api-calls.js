@@ -25,13 +25,13 @@ function updateAPIData(newData, endpoint) {
 }
 
 // DELETE
-function deleteData(trip, endpoint) {
-  const deletedInfo =   fetch(`http://localhost:3001/api/v1/${endpoint}`, {
+function deleteData(tripID, endpoint) {
+  const deletedInfo =   fetch(`http://localhost:3001/api/v1/${endpoint}/${tripID}`, {
     method: 'DELETE',
-    body: JSON.stringify(trip), 
-    headers: {
-      'Content-Type': 'application/json'
-    }
+    // body: JSON.stringify(trip), 
+    // headers: {
+    //   'Content-Type': 'application/json'
+    // }
   })
   .then((response) => {
     if (!response.ok) {
