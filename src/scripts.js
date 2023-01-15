@@ -47,6 +47,10 @@ let allTrips
 
 // EVENT LISTENERS
 window.addEventListener('load', getAllData)
+userLoginBtn.addEventListener('click', displayUserDashboard)
+agentLoginBtn.addEventListener('click', displayAgentDashboard)
+logoffBtn.addEventListener('click', logOffWebsite)
+
 
 // FETCH
 function getAllData() {
@@ -61,16 +65,39 @@ function getAllData() {
 
 
 // INFORMATION DISPLAY
-// function getTraveler() {
-//   
-// }
+function getTraveler() {
+  
+}
+
+
 
 // FORM FUNCTIONALITY
+function resetPlanningForm() {
+  dateInput.value = ''
+  destinationDropdown.value = 0
+  durationDropdown.value = 1
+  travelerDropdown.value = 1
+  estimatedCostOfTrip.innerText = `Estimated Cost: $0.00`
+}
+
+function alphabetizeDataset(dataType, property) {
+  dataType.sort((a, b) => {
+    if (a[property] > b[property]) {
+      return 1
+    } else if (a[property] < b[property]) {
+      return -1
+    }
+  })
+}
 
 // TRAVELER
 
 
 // AGENT
+function loadAgentInformation() {
+
+}
+
 function updateData(updatedInfo, endpoint) {
   updateAPIData(updatedInfo, endpoint)
   getAllData()
@@ -82,7 +109,32 @@ function deleteTrip(tripID, endpoint) {
 }
 
 // LOGIN/LOGOUT 
+function displayUserDashboard() {
+  userDashboard.classList.remove('hidden')
+  loginPage.classList.add('hidden')
+  logoffBtn.classList.remove('hidden')
+}
 
+function displayAgentDashboard() {
+  agentDashboard.classList.remove('hidden')
+  loginPage.classList.add('hidden')
+  logoffBtn.classList.remove('hidden')
+}
+
+function logOffWebsite() {
+  loginPage.classList.remove('hidden')
+  userDashboard.classList.add('hidden')
+  agentDashboard.classList.add('hidden')
+  logoffBtn.classList.add('hidden')
+}
 
 // ERROR 
-
+function displayErrorMessage(error) {
+  const errorMessage = document.querySelector('#server-error')
+  if (error) {
+    console.log('ERROR MESSAGE: Unable to access server information at this time. Please check that the server is running and refresh the page.')
+    errorMessage.style.display = 'inline-block'
+  } else {
+    errorMessage.style.display = 'none'
+  }
+}
