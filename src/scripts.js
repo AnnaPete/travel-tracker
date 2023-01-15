@@ -61,7 +61,9 @@ function getAllData() {
 
 
 // INFORMATION DISPLAY
-
+// function getTraveler() {
+//   
+// }
 
 // FORM FUNCTIONALITY
 
@@ -74,8 +76,8 @@ function updateData(updatedInfo, endpoint) {
   getAllData()
 }
 
-function deleteTrip(trip, endpoint) {
-  deleteData(trip, endpoint)
+function deleteTrip(tripID, endpoint) {
+  deleteData(tripID, endpoint)
   getAllData()
 }
 
