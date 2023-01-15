@@ -47,8 +47,8 @@ let allTrips
 
 // EVENT LISTENERS
 window.addEventListener('load', getAllData)
-userLoginBtn.addEventListener('click', displayUserDashboard)
-agentLoginBtn.addEventListener('click', displayAgentDashboard)
+userLoginBtn.addEventListener('click', authenticateUser)
+agentLoginBtn.addEventListener('click', authenticateUser)
 logoffBtn.addEventListener('click', logOffWebsite)
 
 
@@ -109,6 +109,18 @@ function deleteTrip(tripID, endpoint) {
 }
 
 // LOGIN/LOGOUT 
+function authenticateUser(event) {
+  if (event.target.id === userLoginBtn &&
+      usernameInput.value('traveler') &&
+      userPassInput.value === 'travel') {
+    displayUserDashboard()
+  } else if (event.target.id === agentLoginBtn &&
+      agentUserInput.value === 'agency' &&
+      agentPassInput.value === 'travel') {
+    displayAgentDashboard()
+  }
+}
+
 function displayUserDashboard() {
   userDashboard.classList.remove('hidden')
   loginPage.classList.add('hidden')
