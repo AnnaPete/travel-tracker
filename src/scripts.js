@@ -1,5 +1,5 @@
 import './css/styles.css';
-import { fetchAllData, updateAPIData, deleteData } from './api-calls';
+import fetchApi from './api-calls';
 import Traveler from './Traveler';
 import Agent from './Agent';
 import Trip from './Trip';
