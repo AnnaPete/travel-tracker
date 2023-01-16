@@ -1,0 +1,114 @@
+.login {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+
+  h2 {
+    text-shadow: 3px 3px 3px black;
+  }
+}
+
+.login-main {
+  align-items: center;
+  background-color: $color-eagle-green;
+  border-radius: 1rem;
+  box-shadow: 4px 4px 6px 1px $color-deep-jungle;
+  color: $color-maize;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 80vh;
+  width: 80vw;
+}
+
+.login-body {
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+
+  button {
+    @include button-secondary;
+
+    &:disabled {
+      background-color: $color-ming;
+    }
+  }
+}
+
+.login-form {
+  align-items: center;
+  background-color: $color-honey;
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 6px 1px $color-deep-jungle;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 25rem;
+  margin: 2rem;
+  width: 15rem;
+
+  input {
+    font-size: 18px;
+    height: 25px;
+  }
+}
+
+.line {
+  background-color: $color-maize;
+  height: 90%;
+  width: 1px;
+}
+
+@media screen and (max-width: 768px) {
+  .login-main {
+    margin-top: 1rem;
+    height: auto;
+    width: auto;
+  }
+
+  .line {
+    height: 1px;
+    width: 90%;
+  }
+
+  .login-body {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .login-form {
+    height: 12rem;
+    width: 20rem;
+  }
+}
+
+@media screen and (max-width: 445px) {
+  .login-form {
+    height: 13rem;
+    width: 15rem;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .container {
+    height: 85%;
+  }
+
+  .login {
+    height: 100%;
+  }
+
+  .login-body {
+    padding: 0 0.5rem 0 0.5rem;
+  }
+
+  .login-form {
+    margin: 1rem;
+  }
+
+  input {
+    max-width: 10rem;
+  }
+}

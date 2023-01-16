@@ -1,0 +1,165 @@
+.card {
+  &-header {
+    position: relative;
+    width: 100%;
+  }
+
+  &-body {
+    padding: 0.4rem;
+  }
+
+  &-image {
+    top: 0;
+    right: 0;
+    height: 100px;
+    position: absolute;
+    object-fit: cover;
+    opacity: 0;
+    width: 100%;
+  }
+}
+
+.trip-user {
+  @include grid-presets-4x1;
+  grid-template-areas:
+    "previous present upcoming pending";
+  overflow: hidden;
+
+  .trip-card:hover {
+    cursor: default;
+
+    .card-image {
+      border-radius: 0.5rem 0.5rem 0 0;
+      opacity: 0.5;
+      transition: .8s ease;
+      z-index: 0;
+    }
+
+    h3 {
+      background-color: white;
+      opacity: 0.8;
+    }
+  }
+}
+
+.trip {
+  &-article {
+    @include article-preset;
+  }
+
+  &-form {
+    display: none;
+  }
+}
+
+.trip-card {
+  @include card-preset;
+
+  h3 {
+    font-size: 18px;
+    margin: 2rem 0.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  h4 {
+    font-size: 16px;
+    margin: 0.5rem 0;
+    text-decoration: underline;
+  }
+
+  p {
+    font-size: 14px;
+    margin: 0.5rem 0;
+  }
+}
+
+.user-card h3 {
+  margin-top: 1rem;
+}
+
+#trip-dropdown-message {
+  display: none;
+  margin-top: 1rem;
+}
+
+#trip-present {
+  grid-area: present;
+}
+
+#trip-upcoming {
+  grid-area: upcoming;
+}
+
+#trip-pending {
+  grid-area: pending;
+}
+
+#trip-previous {
+  grid-area: previous;
+}
+
+// MEDIA SCREENS
+@media screen and (max-width: 900px) {
+  .display-previous .trip-article:not(.previous) {
+    display: none !important;
+  }
+
+  .display-present .trip-article:not(.present) {
+    display: none !important;
+  }
+
+  .display-upcoming .trip-article:not(.upcoming) {
+    display: none !important;
+  }
+
+  .display-pending .trip-article:not(.pending) {
+    display: none !important;
+  }
+
+  .card-image {
+    opacity: 0.5;
+  }
+
+  .planning-user {
+    margin: 0.5rem 0;
+  }
+
+  .trip-article {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    overflow: auto;
+    padding-top: 4rem;
+    min-height: 4rem;
+
+    h2 {
+      display: none !important;
+    }
+  }
+
+  .trip-card {
+    margin: 1rem;
+    height: 20rem;
+    width: 15rem;
+  }
+
+  .trip-form {
+    @include mobile-dropdown;
+    justify-content: flex-start;
+    min-height: 70px;
+    width: 100%;
+  }
+
+  .trip-user {
+    display: block;
+    overflow: auto;
+    position: relative;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .trip-card {
+    width: 90%;
+  }
+}

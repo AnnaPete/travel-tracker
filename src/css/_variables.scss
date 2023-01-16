@@ -1,0 +1,82 @@
+@mixin button-primary {
+  background-color: $color-honey;
+  border: none;
+  box-shadow: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  font-family: $font-primary;
+  padding: 0.5rem;
+  width: 150px;
+
+  &:disabled {
+    background-color: $color-maize;
+    cursor: default;
+  }
+}
+
+@mixin button-secondary {
+  @include button-primary;
+  background-color: $color-jungle-green;
+  color: $color-maize;
+}
+
+@mixin grid-presets-4x1 {
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+@mixin grid-presets-2x2 {
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+@mixin mobile-dropdown {
+  align-items: center;
+  color: $color-maize;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  transform: translate(-50%, 0);
+  top: 1rem;
+  left: 50%;
+}
+
+@mixin card-preset {
+  align-items: center;
+  background-color: $color-almond;
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px 5px $color-deep-jungle;
+  color: $color-eagle-green;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0.5rem 0;
+  text-align: center;
+  width: 90%;
+}
+
+@mixin article-preset {
+  align-items: center;
+  background-color: $color-eagle-green;
+  border-radius: 0.5rem;
+  color: $color-almond;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+$color-deep-jungle: #00262E; // shadow color
+$color-eagle-green: #003844; // darkest green
+$color-jungle-green: #005256; // mid green
+$color-ming: #3D767B; // light green
+$color-honey: #FFB100; // bright yellow
+$color-maize: #FFCE63; // light yellow
+$color-almond: #FFEBC6; // light tan
+
+$font-primary: 'Yusei Magic', sans-serif;

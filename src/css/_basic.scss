@@ -1,0 +1,162 @@
+body,
+html {
+  background-color: $color-ming;
+  font-family: $font-primary;
+  height: 100vh;
+  margin: 0 1rem 0 1rem;
+  padding: 0;
+}
+
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
+
+.button-primary {
+  @include button-primary;
+}
+
+.button-secondary {
+  @include button-secondary;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.header {
+  align-items: center;
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+  padding: 0 1rem 0 1rem;
+
+  .logo {
+    align-items: center;
+    display: flex;
+  }
+
+  .slogan {
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  img {
+    height: 40px;
+  }
+}
+
+.list-unordered {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    font-size: 14px;
+  }
+}
+
+.welcome {
+  background-color: $color-honey;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1.5rem;
+}
+
+.container {
+  height: 88%;
+}
+
+.dashboard-user {
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-areas:
+    "welcomeUser planningUser planningUser planningUser"
+    "tripsUser tripsUser tripsUser tripsUser";
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr;
+  height: 100%;
+}
+
+#welcome-user {
+  grid-area: welcomeUser;
+}
+
+#planning-user {
+  grid-area: planningUser;
+}
+
+#trip-user {
+  grid-area: tripsUser;
+}
+
+
+// MEDIA SCREENS
+@media screen and (max-width: 900px) {
+  .dashboard-user {
+    display: block;
+  }
+
+  .header {
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .welcome-spending {
+    align-items: flex-end;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    div {
+      align-items: flex-end;
+      display: flex;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .header {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    .slogan {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .welcome {
+    align-items: center;
+    text-align: center;
+    padding: 0.5rem;
+
+    &-spending {
+      justify-content: center;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .container {
+    height: 80%;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .header {
+    margin-bottom: 1rem;
+  }
+
+  .welcome-spending div {
+    align-items: center;
+    flex-direction: column;
+  }
+}
