@@ -13,10 +13,6 @@ h2, h3, p {
   padding: 0;
 }
 
-.hidden {
-  display: none;
-}
-
 .header {
   align-items: center;
   display: flex;
@@ -422,3 +418,6 @@ input {
   }
 }
 
+.hidden {
+  display: none;
+}
