@@ -1,0 +1,185 @@
+.traveler-header {
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+.traveler-cards,
+.pending-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.button-approve {
+  margin-top: 0.6rem;
+}
+
+.button-delete {
+  margin: 0.2rem 0;
+}
+
+.dashboard-agent {
+  @include grid-presets-4x1;
+  grid-template-areas:
+    "welcomeAgent planningAgent planningAgent planningAgent"
+    "tripsAgent planningAgent planningAgent planningAgent"
+    "tripsAgent planningAgent planningAgent planningAgent";
+  height: 100%;
+}
+
+.pending-article {
+  @include article-preset;
+}
+
+.planning-agent {
+  align-items: center;
+  justify-content: flex-start;
+  max-height: none;
+  width: 90%;
+
+  .trip-card {
+    margin: 1rem;
+    width: 300px;
+
+    table {
+      border-spacing: 0.5rem 0;
+      text-align: left;
+
+      thead {
+        text-decoration: underline;
+      }
+    }
+
+    h3 {
+      margin: 1rem 0 0 0;
+    }
+  }
+}
+
+.traveler-form {
+  display: none;
+}
+
+.traveler-search {
+  margin-top: 0.5rem;
+  text-align: center;
+  height: 20px;
+  width: 200px;
+}
+
+.traveler-search-box {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.user-card {
+  @include card-preset;
+  min-width: 160px;
+}
+
+.welcome h3 {
+  text-decoration: underline;
+}
+
+#pending-message {
+  display: none;
+}
+
+#welcome-agent {
+  grid-area: welcomeAgent;
+}
+
+#planning-agent {
+  grid-area: planningAgent;
+}
+
+#pending-article {
+  grid-area: tripsAgent;
+}
+
+#server-error {
+  display: none;
+  margin-top: 1rem;
+}
+
+
+// MEDIA SCREENS
+@media screen and (max-width: 910px) {
+  .dashboard-agent {
+    grid-template-areas:
+      "welcomeAgent welcomeAgent welcomeAgent"
+      "tripsAgent planningAgent planningAgent"
+      "tripsAgent planningAgent planningAgent";
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.6fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 710px) {
+  .dashboard-agent {
+    grid-template-areas:
+      "welcomeAgent welcomeAgent"
+      "tripsAgent planningAgent"
+      "tripsAgent planningAgent";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.6fr 1fr;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  h1 {
+    margin: 0.4rem;
+  }
+
+  .agent-body h2 {
+    display: none;
+  }
+
+  .dashboard-agent {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .display-trips .agent-body:not(.trips) {
+    display: none !important;
+  }
+
+  .display-travelers .agent-body:not(.travelers) {
+    display: none !important;
+  }
+
+  .pending-article,
+  .planning-agent {
+    background-color: $color-eagle-green;
+    padding-top: 4rem;
+    overflow-y: auto;
+    width: 90%;
+  }
+
+  .trip-card {
+    max-width: 270px;
+  }
+
+  .traveler-form-container {
+    position: relative;
+    text-align: center;
+    width: 100%;
+  }
+
+  .traveler-form {
+    @include mobile-dropdown;
+    top: 1rem;
+    width: 100%;
+  }
+
+  .welcome {
+    margin: 0 auto;
+    width: 90%;
+  }
+}
