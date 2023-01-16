@@ -1,4 +1,5 @@
-import './css/styles.css';
+import 'normalize.css';
+import './css/styles.scss';
 import './images/airplane-logo-png-5.png';
 import fetchApi from './api-calls';
 import domUpdates from './dom-updates';
