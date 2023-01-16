@@ -76,7 +76,10 @@ Promise.all([travelersResponse, tripsResponse, destinationsResponse])
     populateAgentDestinations(allDestinations)
   })
   .then(populateDropdowns)
-  .catch(displayErrorMessage)
+  .catch(error => {
+    const errorMessage = document.querySelector('#server-error')
+    console.log('ERROR MESSAGE: Unable to access server information at this time. Please check that the server is running and refresh the page.')
+    errorMessage.style.display = 'inline-block'})
 
 function populateAgentTravelers(allTravelers, allTrips) {
   allTravelers.forEach(traveler => {
