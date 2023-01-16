@@ -13,9 +13,12 @@ class Trip {
   checkTripStatus() {
     if (this.status === 'pending') {
       return 'pending'
-    } else if (this.status === 'approved') {
-      return 'approved'
+    } else if (daysPassed > 0 && daysPassed <= 30) {
+      return 'upcoming'
+    } else if (Math.abs(daysPassed) <= this.duration) {
+      return 'present'
     }
+    return 'previous'
   }
 }
 
