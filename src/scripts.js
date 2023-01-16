@@ -43,7 +43,6 @@ tripMobileDropdown.addEventListener('change', changeTripView)
 agentMobileDropdown.addEventListener('change', toggleTripAndTravelerView)
 travelerSearchBar.addEventListener('keyup', searchForUser)
 
-
 // FETCH
 let travelersResponse = fetchApi.getTravelers()
 let tripsResponse = fetchApi.getAllTrips()
@@ -135,14 +134,12 @@ function addPendingButtonEventListeners() {
   })
 }
 
-
-
 // FORM FUNCTIONALITY
 function resetPlanningForm() {
   dateInput.value = ''
   destinationDropdown.value = 0
   durationDropdown.value = 1
-  travelerDropdown.value = 1
+  travelersDropdown.value = 1
   estimatedCostOfTrip.innerText = `Estimated Cost: $0.00`
 }
 
@@ -196,12 +193,12 @@ function authenticateUser(event) {
   const agentPassword = document.querySelector('#pass-agent')
   if (event.target.id === 'button-traveler' &&
       travelerUsername.value.includes('traveler') &&
-      travelerPassword.value === 'travel2020') {
-    loadTravelerDashboard()
+      travelerPassword.value === 'travel') {
+        loadTravelerDashboard()
   } else if (event.target.id === 'button-agent' &&
       agentUsername.value === 'agency' &&
-      agentPassword.value === 'travel2020') {
-    loadAgentDashboard()
+      agentPassword.value === 'travel') {
+        loadAgentDashboard()
   }
 }
 
@@ -219,7 +216,7 @@ function createTravelerProfile(traveler) {
   currentTraveler = currentAgent.travelers.find(user => user.id === traveler.id)
   domUpdates.populateTravelerGreeting(currentTraveler)
   findDestinationInformation()
-  displayAmoutSpent()
+  displayAmountSpent()
 }
 
 function findTravelerTrips(allTrips, selectedTraveler = currentTraveler) {
@@ -242,9 +239,9 @@ function clearAllTripDisplays() {
   domUpdates.clearTripDisplays('Pending')
 }
 
-function displayAmoutSpent() {
-  const totalSpentPrevious = document.querySelector('#spending--previous-amount')
-  const totalSpentPresent = document.querySelector('#spending--present-amount')
+function displayAmountSpent() {
+  const totalSpentPrevious = document.querySelector('#spending-previous-amount')
+  const totalSpentPresent = document.querySelector('#spending-present-amount')
   const previous = currentTraveler.calculateSpending(currentAgent.destinations, 2020)
   const present = currentTraveler.calculateSpending(currentAgent.destinations, 2021)
   domUpdates.addCostToProfile(totalSpentPrevious, previous)
@@ -287,7 +284,7 @@ function changeTripView(event) {
   tripSection.classList.remove('display-pending')
   const dropdownValue = event.target.value
   tripSection.classList.add(`display-${dropdownValue}`)
-  const tripDropdownMessage = document.querySelector('#trip--dropdown-message')
+  const tripDropdownMessage = document.querySelector('#trip-dropdown-message')
   if (!checkForTripType(dropdownValue)) {
     const message = `You do not have any ${dropdownValue} trips at this time`
     tripDropdownMessage.innerText = message
@@ -298,7 +295,7 @@ function changeTripView(event) {
 }
 
 function checkForTripType(dropdownValue) {
-  const thisTripType = document.querySelector(`#trip--${dropdownValue}`)
+  const thisTripType = document.querySelector(`#trip-${dropdownValue}`)
   const tripList = thisTripType.querySelectorAll('article')
   if (tripList.length > 0) {
     return true
@@ -328,7 +325,7 @@ function searchForUser(event) {
 }
 
 function unhideAllTravelers() {
-  const allTravelers = document.querySelectorAll('.trip--card')
+  const allTravelers = document.querySelectorAll('.trip-card')
   allTravelers.forEach(traveler => traveler.classList.remove('hidden'))
 }
 
@@ -398,9 +395,9 @@ function toggleTripAndTravelerView(event) {
 }
 
 function checkForPendingTrips() {
-  const pendingTrips = document.querySelector('#pending--article')
+  const pendingTrips = document.querySelector('#pending-article')
   const tripList = pendingTrips.querySelector('article')
-  const pendingMessage = document.querySelector('#pending--message')
+  const pendingMessage = document.querySelector('#pending-message')
   if (!tripList) {
     pendingMessage.style.display = 'inline-block'
   } else {
