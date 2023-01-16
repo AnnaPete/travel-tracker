@@ -1,5 +1,6 @@
 import './css/styles.css';
 import fetchApi from './api-calls';
+import domUpdates from './dom-updates';
 import Traveler from './Traveler';
 import Agent from './Agent';
 import Trip from './Trip';

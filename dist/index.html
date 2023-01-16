@@ -11,23 +11,24 @@
     <header class="header">
       <div class="logo">
         <img src="" alt="">
-        <h1><span>Travel</span></h1>
+        <h1><span>Travel</span>Besties</h1>
       </div>
       <div class="slogan">
         <button id="button-logoff" class="button-primary hidden" type="button" name="button">Log Out</button>
-        <h2>You deserve a vacation~</h2>
+        <h2>You deserve a vacation!</h2>
       </div>
     </header>
-    <main class="main-container">
-      <section class="login-page">
-        <section class="login-main">          
+    <main class="container">
+      <section class="login">
+        <section class="login-main">  
+          <h2>LOGIN</h2>        
           <div class="login-body">
             <article class="login-form">
               <h3>Traveler Login</h3>
               <label for="name-traveler">Username</label>
               <input id="name-traveler" type="text" name="" value="traveler25">
               <label for="pass-traveler">Password</label>
-              <input id="pass-traveler" type="password" name="" value="travel2020">
+              <input id="pass-traveler" type="password" name="" value="travel">
               <button id="button-traveler" class="button-secondary" type="button" name="button">Login</button>
             </article>
             <div class="line"></div>
@@ -36,7 +37,7 @@
               <label for="name-agent">Username</label>
               <input id="name-agent" type="text" name="" value="agency">
               <label for="pass-agent">Password</label>
-              <input id="pass-agent" type="password" name="" value="travel2020">
+              <input id="pass-agent" type="password" name="" value="travel">
               <button id="button-agent" class="button-secondary" type="button" name="button">Login</button>
             </article>
           </div>
@@ -44,7 +45,7 @@
       </section>
       <section class="dashboard-user hidden">
         <article class="welcome" id="welcome-user">
-          <h2 id="welcome-message">Welcome </h2>
+          <h2 id="welcome-message">Welcome User!</h2>
           <div class="welcome-spending">
             <div>
               <h3>Last Year's Spending:</h3>
@@ -83,7 +84,7 @@
             <h3 id="planning-cost" class="planning-cost">Estimated Cost: $0.00</h3>
             <div class="planning-bottom">
               <button id="button-add-trip" class="button-primary" form="planning-form" type="button" name="button"
-                disabled>Add Trip</button>
+                disabled>Add to Trips</button>
             </div>
           </form>
         </article>
@@ -91,7 +92,8 @@
           <div class="trip-form">
             <label for="trip-dropdown">Select Trips to View</label>
             <select class="trip-dropdown" id="trip-dropdown" name="">
-              <option value="past">Past</option>
+              <option value="previous">Previous</option>
+              <option value="present">Present</option>
               <option value="upcoming">Upcoming</option>
               <option value="pending">Pending</option>
             </select>
@@ -101,7 +103,7 @@
             <article class="trip-card">
               <div class="card-header">
                 <h3 class="card-title card-destination">Hawaii</h3>
-                <img class="card-image card-image" src="" alt="">
+                <img class="card-image" src="" alt="">
               </div>
               <div class="card-body">
                 <h4 class="card-header">Details</h4>
@@ -143,7 +145,7 @@
               <option value="trips">Pending Trips</option>
               <option value="travelers">All Travelers</option>
             </select>
-            <p id="pending-message">There are no pending trips at this time</p>
+            <p id="pending-message">You have no pending trips</p>
           </div>
         </div>
         <template id="pending-template">
