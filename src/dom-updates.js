@@ -123,7 +123,7 @@ const domUpdates = {
   },
 
   clearTripDisplays(status) {
-    trips[status].querySelectorAll('article').forEach(item => item.remove())
+    trips[status].querySelectorAll('article').map(item => item.remove())
   },
 
   clearTripList() {
@@ -134,7 +134,6 @@ const domUpdates = {
     travelerCards.querySelectorAll('article').forEach(item => item.remove())
     pendingCards.querySelectorAll('article').forEach(item => item.remove())
   }
-
 }
 
 export default domUpdates
