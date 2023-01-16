@@ -8,21 +8,23 @@ import Destination from './Destination';
 
 // QUERY SELECTORS
 // login
-const logoffButton = document.querySelector('#button-logoff');
-const travelerLoginButton = document.querySelector('#button-traveler');
-const loginView = document.querySelector('.login-page');
-const agentLoginButton = document.querySelector('#button-agent');
-// user dashboard
-const travelerDashboard = document.querySelector('.dashboard-user');
-const dateInput = document.querySelector('#planning-date');
-const destinationDropdown = document.querySelector('#input-destination');
-const durationDropdown = document.querySelector('#input-duration');
-const  travelersDropdown = document.querySelector('#planning-travelers');
-const estimatedCostOfTrip = document.querySelector('#planning-cost');
-const addToTripsButton = document.querySelector('#button-add-trip');
-// agent dashboard
-const agentDashboard = document.querySelector('.dashboard-agent');
-const  travelerDropdown = document.querySelector('#traveler-dropdown');
+const travelerLoginButton = document.querySelector('#button-traveler')
+const agentLoginButton = document.querySelector('#button-agent')
+const logoffButton = document.querySelector('#button-logoff')
+// misc
+const addToTripsButton = document.querySelector('#button-add-trip')
+const travelerDashboard = document.querySelector('.dashboard-user')
+const agentDashboard = document.querySelector('.dashboard-agent')
+const loginView = document.querySelector('.login')
+const travelerUsername = document.querySelector('#name-traveler')
+const destinationDropdown = document.querySelector('#planning-destination')
+const dateInput = document.querySelector('#planning-date')
+const estimatedCostOfTrip = document.querySelector('#planning-cost')
+const durationDropdown = document.querySelector('#planning-duration')
+const travelersDropdown = document.querySelector('#planning-travelers')
+const tripMobileDropdown = document.querySelector('#trip-dropdown')
+const agentMobileDropdown = document.querySelector('#traveler-dropdown')
+const travelerSearchBar = document.querySelector('#traveler-search')
 
 // GLOBAL VARIABLES
 const currentAgent = new Agent();
