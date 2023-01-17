@@ -38,6 +38,11 @@ Additionally, it would be nice to allow a traveler to edit a pending trip and / 
 I started to incorporate agent functionality, but had to put it to the side until I had the basic functionality working. I ran out of time for the project itself, but I am going to spend some time after the evaluation to optimize the visuals and add in the agent functionality.
 
 
+## Installation Instructions
+
+This application requires a local server to be running independent of GitHub pages. Clone [this repository](git@github.com:turingschool-examples/travel-tracker-api.git) and follow the instructions included in the ReadMe to install and start the API. Once the server is running on your local machine, the site can be visited by entering these commands into the Terminal once you've cloned down [the project repository]() and entered the directory: <code>npm install</code><br>
+<code>npm start</code>
+
 ## Author
 
 Anna Peterson: <br>

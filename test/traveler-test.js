@@ -11,7 +11,6 @@ describe('Traveler', function() {
   const traveler1 = {id: 1, name: 'Gandalf', type: 'relaxer'};
   let newTraveler
   let agent
-  let travelerDestinations = []
 
   this.beforeEach(() => {
     newTraveler = new Traveler(traveler1)
@@ -24,9 +23,7 @@ describe('Traveler', function() {
     destinationData.forEach(destination => {
       const newDestination = new Destination(destination)
       agent.destinations.push(newDestination)
-      travelerDestinations.push(newDestination)
     })
-    console.log("traveler destinations: ", travelerDestinations)
   });
 
   it('should be an instantiation of Traveler', function() {
@@ -45,10 +42,7 @@ describe('Traveler', function() {
   });
 
   it('should calculate the total spent on trips for a given year', function() {
-    const thisYearSpending = newTraveler.calculateSpending(travelerDestinations, 2021);
-    console.log('new traveler: ', newTraveler)
-    console.log('this year: ', thisYearSpending)
-
+    const thisYearSpending = newTraveler.calculateSpending(destinationData, '2021');
     expect(thisYearSpending).to.equal('2,398.00');
   });
 });
