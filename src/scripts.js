@@ -1,24 +1,21 @@
 import fetchApi from './api-calls';
 import domUpdates from './dom-updates';
 
-// import 'normalize.css';
 import './css/styles.css';
 import './images/airplane-logo-png-5.png';
 
 import Traveler from './Traveler';
-import Agent from './Agent';
+// import Agent from './Agent';
 import Trip from './Trip';
 import Destination from './Destination';
 
 // QUERY SELECTORS
 // login
 const travelerLoginButton = document.querySelector('#button-traveler')
-// const agentLoginButton = document.querySelector('#button-agent')
 const logoffButton = document.querySelector('#button-logoff')
 // misc
 const addToTripsButton = document.querySelector('#button-add-trip')
 const travelerDashboard = document.querySelector('.dashboard-user')
-// const agentDashboard = document.querySelector('.dashboard-agent')
 const loginView = document.querySelector('.login')
 const travelerUsername = document.querySelector('#name-traveler')
 const destinationDropdown = document.querySelector('#planning-destination')
@@ -26,26 +23,17 @@ const dateInput = document.querySelector('#planning-date')
 const estimatedCostOfTrip = document.querySelector('#planning-cost')
 const durationDropdown = document.querySelector('#planning-duration')
 const travelersDropdown = document.querySelector('#planning-travelers')
-// const tripMobileDropdown = document.querySelector('#trip-dropdown')
-// const agentMobileDropdown = document.querySelector('#traveler-dropdown')
-const travelerSearchBar = document.querySelector('#traveler-search')
 const tripsDisplay = document.querySelector('#trips-all')
 const totalSpentPrevious = document.querySelector('#spending-previous-amount')
 const totalSpentPresent = document.querySelector('#spending-present-amount')
 
 // GLOBAL VARIABLES
-let allTravelers
 let allTrips
 let allDestinations
-const currentAgent = new Agent();
+// const currentAgent = new Agent();
 let currentTraveler
-let travelerObj = {
-id: 10,
-name: "Rickie Jodlowski",
-travelerType: "relaxer"
-}
+let currentTravelerID = 1
 let currentYear = '2020'
-currentTraveler = new Traveler(travelerObj)
 
 // EVENT LISTENERS
 travelerLoginButton.addEventListener('click', authenticateUser)
@@ -73,12 +61,13 @@ durationDropdown.addEventListener('change', validateForm)
 window.addEventListener('load', displayTravelerTrips)
 
 function displayTravelerTrips() {
-  Promise.all([travelersResponse, tripsResponse, destinationsResponse])
+  let singleTravelerResponse = fetchApi.getSpecificTraveler(currentTravelerID)
+  Promise.all([tripsResponse, destinationsResponse, singleTravelerResponse])
   .then(responses => {
-    allTravelers = responses[0].travelers
-    allTrips = responses[1].trips
-    allDestinations= responses[2].destinations
-    const userTrips = findTravelerTrips(currentTraveler)
+    allTrips = responses[0].trips
+    allDestinations= responses[1].destinations
+    currentTraveler = new Traveler(responses[2])
+    const userTrips = findTravelerTrips(currentTravelerID)
     userTrips.forEach(trip => {
       const foundDestination = allDestinations.find(destination => {
         if (destination.id === trip.destinationID) {
@@ -87,7 +76,7 @@ function displayTravelerTrips() {
       })
       tripsDisplay.innerHTML += `<li>Where: ${foundDestination.destination} When: ${trip.date}</li>`
     })
-    totalSpentPresent.innerText = currentTraveler.calculateSpending(allDestinations, currentYear)
+    totalSpentPresent.innerText = currentTraveler.calculateSpending(allDestinations)
     domUpdates.addDestinationsToDropdown(allDestinations, destinationDropdown)
     domUpdates.addNumbersToDropdowns(travelersDropdown)
     domUpdates.addNumbersToDropdowns(durationDropdown)
@@ -104,22 +93,23 @@ let travelersResponse = fetchApi.getTravelers()
 let tripsResponse = fetchApi.getAllTrips()
 let destinationsResponse = fetchApi.getAllDestinations()
 
-function reloadServerInformation() {
-  travelersResponse = fetchApi.getTravelers()
-  tripsResponse = fetchApi.getAllTrips()
-
-  return Promise.all([travelersResponse, tripsResponse])
-    .then(responses => {
-      const allTravelers = responses[0].travelers
-      const allTrips = responses[1].trips
-      currentAgent.travelers = []
-      currentAgent.trips = []
-      populateAgentTravelers(allTravelers, allTrips)
-      populateAgentTrips(allTrips)
-      alphabetizeDataset(currentAgent.travelers, 'name')
-    })
-    .catch(displayErrorMessage)
-}
+// 
+// function reloadServerInformation() {
+//   travelersResponse = fetchApi.getTravelers()
+//   tripsResponse = fetchApi.getAllTrips()
+// 
+//   return Promise.all([travelersResponse, tripsResponse])
+//     .then(responses => {
+//       const allTravelers = responses[0].travelers
+//       const allTrips = responses[1].trips
+//       currentAgent.travelers = []
+//       currentAgent.trips = []
+//       populateAgentTravelers(allTravelers, allTrips)
+//       populateAgentTrips(allTrips)
+//       alphabetizeDataset(currentAgent.travelers, 'name')
+//     })
+//     .catch(displayErrorMessage)
+// }
 
 // Promise.all([travelersResponse, tripsResponse, destinationsResponse])
 //   .then(responses => {
@@ -136,65 +126,65 @@ function reloadServerInformation() {
 //     console.log('ERROR MESSAGE: ', error)
 //     errorMessage.style.display = 'inline-block'})
 
-function populateAgentTravelers(allTravelers, allTrips) {
-  allTravelers.forEach(traveler => {
-    const newTraveler = new Traveler(traveler)
-    findTravelerTrips(allTrips, newTraveler)
-    currentAgent.travelers.push(newTraveler)
-  })
-}
+// function populateAgentTravelers(allTravelers, allTrips) {
+//   allTravelers.forEach(traveler => {
+//     const newTraveler = new Traveler(traveler)
+//     findTravelerTrips(allTrips, newTraveler)
+//     currentAgent.travelers.push(newTraveler)
+//   })
+// }
 
-function populateAgentTrips(allTrips) {
-  allTrips.forEach(trip => {
-    const newTrip = new Trip(trip)
-    // newTrip.formatDate()
-    currentAgent.trips.push(newTrip)
-  })
-}
+// function populateAgentTrips(allTrips) {
+//   allTrips.forEach(trip => {
+//     const newTrip = new Trip(trip)
+//     // newTrip.formatDate()
+//     currentAgent.trips.push(newTrip)
+//   })
+// }
 
-function populateAgentDestinations(allDestinations) {
-  allDestinations.forEach(place => {
-    const newDestination = new Destination(place)
-    currentAgent.destinations.push(newDestination)
-  })
-}
+// function populateAgentDestinations(allDestinations) {
+//   allDestinations.forEach(place => {
+//     const newDestination = new Destination(place)
+//     currentAgent.destinations.push(newDestination)
+//   })
+// }
 
 
 // USER INFORMATION POPULATION
 function authenticateUser(event) {
   event.preventDefault()
   const travelerPassword = document.querySelector('#pass-traveler')
-  const agentUsername = document.querySelector('#name-agent')
-  const agentPassword = document.querySelector('#pass-agent')
+  // const agentUsername = document.querySelector('#name-agent')
+  // const agentPassword = document.querySelector('#pass-agent')
 
-  if (event.target.id === 'button-traveler' &&
-      travelerUsername.value.includes('traveler') &&
-      travelerPassword.value === 'travel') {
+  // if (event.target.id === 'button-traveler' &&
+      // travelerUsername.value.includes('traveler') &&
+      // travelerPassword.value === 'travel') {
     loadTravelerDashboard()
 
-  } else if (event.target.id === 'button-agent' &&
-      agentUsername.value === 'agency' &&
-      agentPassword.value === 'travel') {
-    loadAgentDashboard()
-  }
+  // } else if (event.target.id === 'button-agent' &&
+  //     agentUsername.value === 'agency' &&
+  //     agentPassword.value === 'travel') {
+  //   loadAgentDashboard()
+  // }
 }
 
 function loadTravelerDashboard() {
   logOnWebsite(travelerDashboard)
   clearAllTripDisplays()
   resetPlanningForm()
-  const travelerID = travelerUsername.value.slice(8)
-  fetchApi.getSpecificTraveler(travelerID)
-    .then(traveler => createTravelerProfile(traveler))
-    .catch(displayErrorMessage)
+  // const travelerID = travelerUsername.value.slice(8)
+  // fetchApi.getSpecificTraveler(travelerID)
+  //   .then(traveler => createTravelerProfile(traveler))
+  //   .catch(displayErrorMessage)
 }
 
-function createTravelerProfile(traveler) {
-  currentTraveler = currentAgent.travelers.find(user => user.id === traveler.id)
-  domUpdates.populateTravelerGreeting(currentTraveler)
-  findDestinationInformation()
-  displayAmountSpent()
-}
+// function createTravelerProfile(traveler) {
+//   currentTraveler = currentAgent.travelers.find(user => user.id === traveler.id)
+//   domUpdates.populateTravelerGreeting(currentTraveler)
+//   findDestinationInformation()
+//   displayAmountSpent()
+// }
 
 // function findTravelerTrips(allTrips, currentTraveler) {
 //   const travelerTrips = allTrips.filter(trip => {
@@ -211,9 +201,9 @@ function createTravelerProfile(traveler) {
 // }
 
 // new version
-function findTravelerTrips(currentTraveler) {
+function findTravelerTrips(currentTravelerID) {
   const travelerTrips = allTrips.filter(trip => {
-    return trip.userID === currentTraveler.id
+    return trip.userID === currentTravelerID
   })
   currentTraveler.trips = travelerTrips.map(trip => {
     const newTrip = new Trip(trip)
@@ -230,13 +220,13 @@ function clearAllTripDisplays() {
   domUpdates.clearTripDisplays('Upcoming')
   domUpdates.clearTripDisplays('Pending')
 }
-
-function displayAmountSpent() {
-  const previous = currentTraveler.calculateSpending(currentAgent.destinations, 2020)
-  const present = currentTraveler.calculateSpending(currentAgent.destinations, 2021)
-  domUpdates.addCostToProfile(totalSpentPrevious, previous)
-  domUpdates.addCostToProfile(totalSpentPresent, present)
-}
+// 
+// function displayAmountSpent() {
+//   const previous = currentTraveler.calculateSpending(currentAgent.destinations, 2020)
+//   const present = currentTraveler.calculateSpending(currentAgent.destinations, 2021)
+//   domUpdates.addCostToProfile(totalSpentPrevious, previous)
+//   domUpdates.addCostToProfile(totalSpentPresent, present)
+// }
 
 function addToPendingTrips(event) {
   event.preventDefault()
@@ -280,19 +270,20 @@ function createNewTrip() {
   // const totalTrips = currentAgent.trips.length - 1
   // tripInformation.id = currentAgent.trips[totalTrips].id + 1
   tripsDisplay.innerHTML = ''
-  const newTrip = new Trip(tripInformation)
+  // const newTrip = new Trip(tripInformation)
   // newTrip.formatDate()
-  currentTraveler.trips.push(newTrip)
+  // currentTraveler.trips.push(newTrip)
   fetchApi.postNewTrip(tripInformation)
     .then(data => {
       console.log('data: ', data)
-      travelersResponse = fetchApi.getTravelers()
+      travelersResponse = fetchApi.getSpecificTraveler(currentTravelerID)
       tripsResponse = fetchApi.getAllTrips()
       return Promise.all([travelersResponse, tripsResponse])
         .then(responses => {
-          allTravelers = responses[0].travelers
+          currentTraveler = new Traveler(responses[0])
+          console.log('hello: ', responses[0])
           allTrips = responses[1].trips
-          const userTrips = findTravelerTrips(currentTraveler)
+          const userTrips = findTravelerTrips(currentTravelerID)
           console.log({userTrips});
           
           userTrips.forEach(trip => {
@@ -361,12 +352,12 @@ function alphabetizeDataset(dataType, property) {
   })
 }
 
-function populateDropdowns() {
-  alphabetizeDataset(currentAgent.destinations, 'destination')
-  domUpdates.addDestinationsToDropdown(currentAgent.destinations, destinationDropdown)
-  domUpdates.addNumbersToDropdowns(durationDropdown)
-  domUpdates.addNumbersToDropdowns(travelersDropdown)
-}
+// function populateDropdowns() {
+//   alphabetizeDataset(currentAgent.destinations, 'destination')
+//   domUpdates.addDestinationsToDropdown(currentAgent.destinations, destinationDropdown)
+//   domUpdates.addNumbersToDropdowns(durationDropdown)
+//   domUpdates.addNumbersToDropdowns(travelersDropdown)
+// }
 
 function updateEstimatedCost() {
   console.log({destinationDropdown});
@@ -388,6 +379,7 @@ function updateEstimatedCost() {
 function validateForm() {
   const selectedDate = new Date(dateInput.value)
   const dateDifference = determineDateDifference(selectedDate)
+  console.log('date difference: ', dateDifference)
   if (destinationDropdown.value > 0 && dateDifference > 0) {
     addToTripsButton.disabled = false
   } else {
@@ -398,106 +390,106 @@ function validateForm() {
 
 
 // AGENT FUNCTIONS
-function loadAgentDashboard() {
-  logOnWebsite(agentDashboard)
-  alphabetizeDataset(currentAgent.travelers, 'name')
-  loadTravelerInformation()
-  populateAnnualIncome()
-  populateTodaysTravelers()
-}
+// function loadAgentDashboard() {
+//   logOnWebsite(agentDashboard)
+//   alphabetizeDataset(currentAgent.travelers, 'name')
+//   loadTravelerInformation()
+//   populateAnnualIncome()
+//   populateTodaysTravelers()
+// }
 
-function searchForUser(event) {
-  const searchValue = event.target.value.toLowerCase()
-  const travelerIDs = currentAgent.travelers.reduce((acc, curr) => {
-    if (!curr.name.toLowerCase().includes(searchValue)) {
-      acc.push(curr.id)
-    }
-    return acc
-  }, [])
-  unhideAllTravelers()
-  hideUnsearchedTravelers(travelerIDs)
-}
+// function searchForUser(event) {
+//   const searchValue = event.target.value.toLowerCase()
+//   const travelerIDs = currentAgent.travelers.reduce((acc, curr) => {
+//     if (!curr.name.toLowerCase().includes(searchValue)) {
+//       acc.push(curr.id)
+//     }
+//     return acc
+//   }, [])
+//   unhideAllTravelers()
+//   hideUnsearchedTravelers(travelerIDs)
+// }
 
-function unhideAllTravelers() {
-  const allTravelers = document.querySelectorAll('.trip-card')
-  allTravelers.forEach(traveler => traveler.classList.remove('hidden'))
-}
+// function unhideAllTravelers() {
+//   const allTravelers = document.querySelectorAll('.trip-card')
+//   allTravelers.forEach(traveler => traveler.classList.remove('hidden'))
+// }
+// 
+// function hideUnsearchedTravelers(travelerIDs) {
+//   travelerIDs.forEach(id => {
+//     document.getElementById(`${id}`).classList.add('hidden')
+//   })
+// }
+// 
+// function populateAnnualIncome() {
+//   const presentIncome = currentAgent.calculateTotalIncome(2021)
+//   domUpdates.displayAgentAnnualIncome(presentIncome)
+// }
+// 
+// function populateTodaysTravelers() {
+//   const todaysTrips = currentAgent.trips.filter(trip => {
+//     const daysPassed = determineDateDifference(trip.date)
+//     if (daysPassed < 0 && Math.abs(daysPassed) < trip.duration &&
+//         trip.status === 'approved') {
+//       return true
+//     }
+//     return false
+//   })
+//   const todaysTravelers = currentAgent.findTravelers(todaysTrips)
+//   domUpdates.displayTodaysTravelers(todaysTravelers)
+// }
+// 
+// function approvePendingTrip(event) {
+//   const tripID = event.target.getAttribute('tripID')
+//   const revisedTrip = {
+//     id: Number(tripID),
+//     status: 'approved'
+//   }
+//   fetchApi.postModifyTrip(revisedTrip)
+//   reloadServerInformation()
+//     .then(loadTravelerInformation)
+//     .catch(displayErrorMessage)
+// }
+// 
+// function deletePendingTrip(event) {
+//   const tripID = event.target.getAttribute('tripID')
+//   fetchApi.deleteTrip(Number(tripID))
+//   reloadServerInformation()
+//     .then(loadTravelerInformation)
+//     .catch(displayErrorMessage)
+// }
 
-function hideUnsearchedTravelers(travelerIDs) {
-  travelerIDs.forEach(id => {
-    document.getElementById(`${id}`).classList.add('hidden')
-  })
-}
-
-function populateAnnualIncome() {
-  const presentIncome = currentAgent.calculateTotalIncome(2021)
-  domUpdates.displayAgentAnnualIncome(presentIncome)
-}
-
-function populateTodaysTravelers() {
-  const todaysTrips = currentAgent.trips.filter(trip => {
-    const daysPassed = determineDateDifference(trip.date)
-    if (daysPassed < 0 && Math.abs(daysPassed) < trip.duration &&
-        trip.status === 'approved') {
-      return true
-    }
-    return false
-  })
-  const todaysTravelers = currentAgent.findTravelers(todaysTrips)
-  domUpdates.displayTodaysTravelers(todaysTravelers)
-}
-
-function approvePendingTrip(event) {
-  const tripID = event.target.getAttribute('tripID')
-  const revisedTrip = {
-    id: Number(tripID),
-    status: 'approved'
-  }
-  fetchApi.postModifyTrip(revisedTrip)
-  reloadServerInformation()
-    .then(loadTravelerInformation)
-    .catch(displayErrorMessage)
-}
-
-function deletePendingTrip(event) {
-  const tripID = event.target.getAttribute('tripID')
-  fetchApi.deleteTrip(Number(tripID))
-  reloadServerInformation()
-    .then(loadTravelerInformation)
-    .catch(displayErrorMessage)
-}
-
-function loadTravelerInformation() {
-  domUpdates.clearTravelerCardDisplays()
-  currentAgent.travelers.forEach(traveler => {
-    domUpdates.displayTravelerInformation(traveler, currentAgent.destinations)
-    domUpdates.displayPendingTrips(traveler, currentAgent.destinations)
-  })
-  addPendingButtonEventListeners()
-}
-
-function toggleTripAndTravelerView(event) {
-  const dropdownValue = event.target.value
-  if (dropdownValue === 'trips') {
-    checkForPendingTrips()
-    agentDashboard.classList.add('display-trips')
-    agentDashboard.classList.remove('display-travelers')
-  } else {
-    agentDashboard.classList.remove('display-trips')
-    agentDashboard.classList.add('display-travelers')
-  }
-}
-
-function checkForPendingTrips() {
-  const pendingTrips = document.querySelector('#pending-article')
-  const tripList = pendingTrips.querySelector('article')
-  const pendingMessage = document.querySelector('#pending-message')
-  if (!tripList) {
-    pendingMessage.style.display = 'inline-block'
-  } else {
-    pendingMessage.style.display = 'none'
-  }
-}
+// function loadTravelerInformation() {
+//   domUpdates.clearTravelerCardDisplays()
+//   currentAgent.travelers.forEach(traveler => {
+//     domUpdates.displayTravelerInformation(traveler, currentAgent.destinations)
+//     domUpdates.displayPendingTrips(traveler, currentAgent.destinations)
+//   })
+//   addPendingButtonEventListeners()
+// }
+// 
+// function toggleTripAndTravelerView(event) {
+//   const dropdownValue = event.target.value
+//   if (dropdownValue === 'trips') {
+//     checkForPendingTrips()
+//     agentDashboard.classList.add('display-trips')
+//     agentDashboard.classList.remove('display-travelers')
+//   } else {
+//     agentDashboard.classList.remove('display-trips')
+//     agentDashboard.classList.add('display-travelers')
+//   }
+// }
+// 
+// function checkForPendingTrips() {
+//   const pendingTrips = document.querySelector('#pending-article')
+//   const tripList = pendingTrips.querySelector('article')
+//   const pendingMessage = document.querySelector('#pending-message')
+//   if (!tripList) {
+//     pendingMessage.style.display = 'inline-block'
+//   } else {
+//     pendingMessage.style.display = 'none'
+//   }
+// }
 
 
 // GENERAL FUNCTIONALITY
@@ -527,16 +519,16 @@ function formatDateForPost(dateInput) {
   return dateParts.join('/')
 }
 
-function addPendingButtonEventListeners() {
-  const approveButtons = document.querySelectorAll('.button-approve')
-  const deleteButtons = document.querySelectorAll('.button-delete')
-  approveButtons.forEach(button => {
-    button.addEventListener('click', approvePendingTrip)
-  })
-  deleteButtons.forEach(button => {
-    button.addEventListener('click', deletePendingTrip)
-  })
-}
+// function addPendingButtonEventListeners() {
+//   const approveButtons = document.querySelectorAll('.button-approve')
+//   const deleteButtons = document.querySelectorAll('.button-delete')
+//   approveButtons.forEach(button => {
+//     button.addEventListener('click', approvePendingTrip)
+//   })
+//   deleteButtons.forEach(button => {
+//     button.addEventListener('click', deletePendingTrip)
+//   })
+// }
 
 
 // TOGGLE BETWEEN LOGIN AND DASHBOARD
@@ -550,7 +542,7 @@ function logOffWebsite(event) {
   event.preventDefault()
   loginView.classList.remove('hidden')
   travelerDashboard.classList.add('hidden')
-  agentDashboard.classList.add('hidden')
+  // agentDashboard.classList.add('hidden')
   logoffButton.classList.add('hidden')
 }
 
