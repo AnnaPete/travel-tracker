@@ -49,6 +49,14 @@ li {
   font-size: 14px;
 }
 
+.info-container {
+  display: flex;
+  flex-direction: column;
+  height: 15vh;
+  width: 30vw;
+  border: 2px darkslategray;
+}
+
 .welcome {
   background-color: darkgoldenrod;
   border-radius: 0.5rem;
@@ -83,6 +91,8 @@ li {
 
 #trip-user {
   grid-area: tripsUser;
+  height: 50%;
+  width: 80%;
 }
 
 /* LOGIN */
