@@ -16,24 +16,6 @@ class Traveler {
     })
   }
 
-  // calculateSpending(destinations, year) {
-  //   let totalCost = 0
-  //   this.trips.forEach(trip => {
-  //     const tripDate = new Date(trip.date)
-  //     const tripYear = tripDate.getFullYear()
-  //     if (tripYear === year && trip.status !== 'pending') {
-  //       const totalPerTrip = this.calculateCostPerTrip(trip, destinations)
-  //       totalCost += totalPerTrip
-  //     } else if (!year && trip.status !== 'pending') {
-  //       const totalPerTrip = this.calculateCostPerTrip(trip, destinations)
-  //       totalCost += totalPerTrip
-  //     }
-  //   })
-  //   return (totalCost * 1.1).toLocaleString('en-US', {
-  //     minimumFractionDigits: 2,
-  //     maximumFractionDigits: 2
-  //   })
-  // }
   calculateSpending(destinations, year) {
     let totalCost = 0
     this.trips.forEach(trip => {

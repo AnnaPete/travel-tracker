@@ -30,15 +30,6 @@
               <input id="pass-traveler" type="password" name="" value="travel">
               <button id="button-traveler" class="button-secondary" type="button" name="button">Login</button>
             </article>
-            <!-- <div class="line"></div>
-            <article class="login-form">
-              <h3>Agent Login</h3>
-              <label for="name-agent">Username</label>
-              <input id="name-agent" type="text" name="" value="agency">
-              <label for="pass-agent">Password</label>
-              <input id="pass-agent" type="password" name="" value="travel">
-              <button id="button-agent" class="button-secondary" type="button" name="button">Login</button>
-            </article> -->
           </div>
         </section>
       </section>
@@ -48,10 +39,6 @@
           <p id="server-error">Unable to access server information at this time. Please check that the server is running and
             refresh the page.</p>
           <div class="welcome-spending">
-            <!-- <div>
-              <h3>Last Year's Spending:</h3>
-              <p id="spending-previous-amount">$400.55</p>
-            </div> -->
             <div>
               <h3>This Year's Spending:</h3>
               <p id="spending-present-amount"></p>
@@ -92,14 +79,6 @@
         <section class="trip-user display-previous" id="trip-user">
           <div class="trip-form">
             <ul class="trips" id="trips-all">All Trips</ul>
-            <!-- <label for="trip-dropdown">Select Trips to View</label> -->
-            <!-- <select class="trip-dropdown" id="trip-dropdown" name="">
-              <option value="previous">Previous</option>
-              <option value="present">Present</option>
-              <option value="upcoming">Upcoming</option>
-              <option value="pending">Pending</option>
-            </select> -->
-            <!-- <p id="trip-dropdown-message">There is nothing to show.</p> -->
           </div>
           <template id="trip-template">
             <article class="trip-card">
@@ -118,82 +97,8 @@
               </div>
             </article>
           </template>
-          <!-- <article id="trip-past" class="trip-article past">
-            <h2>Past</h2>
-          </article>
-          <article id="trip-present" class="trip-article present">
-            <h2>Present</h2>
-          </article>
-          <article id="trip-upcoming" class="trip-article upcoming">
-            <h2>Upcoming</h2>
-          </article>
-          <article id="trip-pending" class="trip-article pending">
-            <h2>Pending</h2>
-          </article> -->
         </section>
       </section>
-      <!-- <section class="dashboard-agent hidden display-trips">
-        <article class="welcome" id="welcome-agent">
-          <h2>Welcome Agent!</h2>
-          <h3>YTD Income:</h3>
-          <p id="welcome-income">$400.55</p>
-          <h3>Today's Travelers:</h3>
-          <ul id="welcome-trips" class="list-unordered"></ul>
-        </article>
-        <div class="traveler-form-container">
-          <div class="traveler-form">
-            <label for="traveler-dropdown">Select View</label>
-            <select class="traveler-dropdown" id="traveler-dropdown" name="">
-              <option value="trips">Pending Trips</option>
-              <option value="travelers">All Travelers</option>
-            </select>
-            <p id="pending-message">You have no pending trips</p>
-          </div>
-        </div>
-        <template id="pending-template">
-          <article class="user-card">
-            <h3 class="pending-name">User Name</h3>
-            <p class="pending-location">Location</p>
-            <p class="pending-date">Start Date</p>
-            <button class="button-secondary button-approve" type="button" name="button">Approve</button>
-            <button class="button-secondary button-delete" type="button" name="button">Delete</button>
-          </article>
-        </template>
-        <article class="pending-article agent-body trips" id="pending-article">
-          <h2>Pending Trips</h2>
-          <div class="pending-cards" id="pending-cards">
-          </div>
-        </article>
-        <article class="planning-agent agent-body travelers" id="planning-agent">
-          <div class="traveler-header">
-            <h2>All Travelers</h2>
-            <div class="traveler-search-box">
-              <label for="traveler-search">Search by Traveler Name</label>
-              <input id="traveler-search" class="traveler-search" type="text" name="" value="" placeholder="Sam Gamgee">
-            </div>
-            <p id="server-error">Unable to access server information at this time. Please check that the server is running and refresh the page.</p>
-          </div>
-          <div class="traveler-cards" id="traveler-cards">
-            <template id="traveler-template">
-              <article class="trip-card">
-                <h3 class="card-title" id="traveler-name">User Name</h3>
-                <h4 class="card-header">All Trips:</h4>
-                <table>
-                  <thead>
-                    <tr>
-                      <td>Location</td>
-                      <td>Status</td>
-                    </tr>
-                  </thead>
-                  <tbody id="traveler-locations"></tbody>
-                </table>
-                <h4 class="card-header">Lifetime Spending:</h4>
-                <p class="card-text" id="traveler-spent">$8000</p>
-              </article>
-            </template>
-          </div>
-        </article>
-      </section> -->
     </main>
     <script src="bundle.js"></script>
   </body>
