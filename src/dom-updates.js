@@ -1,8 +1,3 @@
-import Traveler from './Traveler'
-
-const travelerCards = document.querySelector('#traveler-cards')
-const pendingCards = document.querySelector('#pending-cards')
-const todaysTrips = document.querySelector('#welcome-trips')
 const trips = {
   Template: document.querySelector('#trip-template'),
   Previous: document.querySelector('#trip-previous'),
@@ -57,83 +52,6 @@ const domUpdates = {
       dropdown.appendChild(newOption)
     })
   },
-
-  // AGENT DASHBOARD
-  displayAgentAnnualIncome(presentSpent) {
-    const presentIncome = document.querySelector('#welcome-income')
-    presentIncome.innerText = `$${presentSpent}`
-  },
-
-  displayTodaysTravelers(todaysTravelers) {
-    this.clearTripList()
-    todaysTravelers.forEach(traveler => {
-      const newTraveler = document.createElement('li')
-      newTraveler.innerText = `${Object.keys(traveler)} (#${Object.values(traveler)})`
-      todaysTrips.appendChild(newTraveler)
-    })
-  },
-
-  displayTravelerInformation(traveler, destinations) {
-    const travelerTemplate = document.querySelector('#traveler-template')
-    const newTravelerCard = travelerTemplate.content.cloneNode(true)
-    const travelerName = `${traveler.name} (#${traveler.id})`
-    const travelerSpending = traveler.calculateSpending(destinations)
-    newTravelerCard.querySelector('article').id = traveler.id
-    newTravelerCard.querySelector('#traveler-name').innerText = travelerName
-    newTravelerCard.querySelector('#traveler-spent').innerText = travelerSpending
-    traveler.trips.forEach(trip => {
-      const location = this.findDestination(destinations, trip)
-      this.buildTableElements(trip, location, newTravelerCard)
-    })
-    travelerCards.appendChild(newTravelerCard)
-  },
-
-  displayPendingTrips(traveler, destinations) {
-    const pendingTrips = traveler.trips.filter(trip => trip.status === 'pending')
-    pendingTrips.forEach(trip => {
-      const pendingTemplate = document.querySelector('#pending-template')
-      const location = this.findDestination(destinations, trip)
-      const newCard = pendingTemplate.content.cloneNode(true)
-      const travelerName = `${traveler.name} (#${traveler.id})`
-      const tripInfo = `${trip.date} (${trip.duration} days)`
-      newCard.querySelector('.pending-name').innerText = travelerName
-      newCard.querySelector('.pending-location').innerText = location.destination
-      newCard.querySelector('.pending-date').innerText = tripInfo
-      newCard.querySelector('.button-approve').setAttribute('tripID', trip.id)
-      newCard.querySelector('.button-delete').setAttribute('tripID', trip.id)
-      pendingCards.appendChild(newCard)
-    })
-  },
-
-  buildTableElements(trip, location, card) {
-    const travelerLocations = card.querySelector('#traveler-locations')
-    const newRow = document.createElement('tr')
-    const locationCell = document.createElement('td')
-    const statusCell = document.createElement('td')
-    locationCell.innerText = location.destination
-    statusCell.innerText = trip.status
-    travelerLocations.appendChild(newRow)
-    newRow.appendChild(locationCell)
-    newRow.appendChild(statusCell)
-  },
-
-  // HELPER FUNCTIONS
-  findDestination(destinations, trip) {
-    return destinations.find(place => place.id === trip.destinationID)
-  },
-
-  clearTripDisplays(status) {
-    trips[status].querySelectorAll('article').map(item => item.remove())
-  },
-
-  clearTripList() {
-    todaysTrips.querySelectorAll('li').forEach(li => li.remove())
-  },
-
-  clearTravelerCardDisplays() {
-    travelerCards.querySelectorAll('article').forEach(item => item.remove())
-    pendingCards.querySelectorAll('article').forEach(item => item.remove())
-  }
 }
 
 export default domUpdates
