@@ -39,7 +39,7 @@ destinationDropdown.addEventListener('change', validateForm)
 travelersDropdown.addEventListener('change', validateForm)
 durationDropdown.addEventListener('change', validateForm)
 // accessibility branch only
-// window.addEventListener('load', loadTravelerDashboard)
+window.addEventListener('load', loadTravelerDashboard)
 
 function displayTravelerTrips() {
   let singleTravelerResponse = fetchApi.getSpecificTraveler(currentTravelerID)
