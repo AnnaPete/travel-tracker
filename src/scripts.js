@@ -39,7 +39,7 @@ destinationDropdown.addEventListener('change', validateForm)
 travelersDropdown.addEventListener('change', validateForm)
 durationDropdown.addEventListener('change', validateForm)
 // accessibility branch only
-window.addEventListener('load', loadTravelerDashboard)
+// window.addEventListener('load', loadTravelerDashboard)
 
 function displayTravelerTrips() {
   let singleTravelerResponse = fetchApi.getSpecificTraveler(currentTravelerID)
@@ -56,7 +56,12 @@ function displayTravelerTrips() {
           return destination
         }
       })
-      tripsDisplay.innerHTML += `<li>Where: ${foundDestination.destination} When: ${trip.date}</li>`
+      tripsDisplay.innerHTML += `
+        <div class="info-container">
+          <li>Where: ${foundDestination.destination}</li>
+          <li>When: ${trip.date}</li>
+          <li>Status: ${trip.status}</li>
+        </div>`
     })
     totalSpentPresent.innerText = currentTraveler.calculateSpending(allDestinations)
     domUpdates.addDestinationsToDropdown(allDestinations, destinationDropdown)
@@ -140,13 +145,19 @@ function createNewTrip() {
                 return destination
               }
             })
-            tripsDisplay.innerHTML += `<li>Where: ${foundDestination.destination} When: ${trip.date}</li>`
+            tripsDisplay.innerHTML += `
+            <div class="info-container">
+              <li>Where: ${foundDestination.destination}</li>
+              <li>When: ${trip.date}</li>
+              <li>Status: ${trip.status}</li>
+            </div>
+            `
           })
         })
     })
     .catch(displayErrorMessage)
 }
-
+// `<li>Where: ${foundDestination.destination}    When: ${trip.date}    Status: ${trip.status} </li>`
 // PLANNING FORM INFORMATION
 function resetPlanningForm() {
   dateInput.value = ''
