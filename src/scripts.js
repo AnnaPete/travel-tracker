@@ -41,7 +41,6 @@ dateInput.addEventListener('change', validateForm)
 destinationDropdown.addEventListener('change', validateForm)
 travelersDropdown.addEventListener('change', validateForm)
 durationDropdown.addEventListener('change', validateForm)
-window.addEventListener('load', displayTravelerTrips)
 
 function displayTravelerTrips() {
   let singleTravelerResponse = fetchApi.getSpecificTraveler(currentTravelerID)
@@ -51,6 +50,7 @@ function displayTravelerTrips() {
     allDestinations= responses[1].destinations
     currentTraveler = new Traveler(responses[2])
     const userTrips = findTravelerTrips(currentTravelerID)
+    tripsDisplay.innerHTML = ''
     userTrips.forEach(trip => {
       const foundDestination = allDestinations.find(destination => {
         if (destination.id === trip.destinationID) {
@@ -82,16 +82,17 @@ function authenticateUser(event) {
   event.preventDefault()
   const travelerPassword = document.querySelector('#pass-traveler')
 
-  // if (event.target.id === 'button-traveler' &&
-      // travelerUsername.value.includes('traveler') &&
-      // travelerPassword.value === 'travel') {
+  if (travelerUsername.value.includes('traveler') &&
+      travelerPassword.value === 'travel') {
+    const getID = travelerUsername.value.split('traveler')[1]
+    currentTravelerID = parseInt(getID)
     loadTravelerDashboard()
-  // }
+  }
 }
 
 function loadTravelerDashboard() {
-  logOnWebsite(travelerDashboard)
-  clearAllTripDisplays()
+  logOnWebsite()
+  displayTravelerTrips()
   resetPlanningForm()
 }
 
@@ -104,13 +105,6 @@ function findTravelerTrips(currentTravelerID) {
     return newTrip
   })  
   return currentTraveler.trips
-}
-
-function clearAllTripDisplays() {
-  domUpdates.clearTripDisplays('Previous')
-  domUpdates.clearTripDisplays('Present')
-  domUpdates.clearTripDisplays('Upcoming')
-  domUpdates.clearTripDisplays('Pending')
 }
 
 function addToPendingTrips(event) {
@@ -204,8 +198,8 @@ function formatDateForPost(dateInput) {
 }
 
 // TOGGLE BETWEEN LOGIN AND DASHBOARD
-function logOnWebsite(selectedDashboard) {
-  selectedDashboard.classList.remove('hidden')
+function logOnWebsite() {
+  travelerDashboard.classList.remove('hidden')
   loginView.classList.add('hidden')
   logoffButton.classList.remove('hidden')
 }
@@ -221,8 +215,8 @@ function displayErrorMessage(error) {
   const errorMessage = document.querySelector('#server-error')
   if (error) {
     console.log('ERROR MESSAGE: Unable to access server information at this time. Please check that the server is running and refresh the page.')
-    errorMessage.style.display = 'inline-block'
+    errorMessage.innerText = 'Unable to access server information at this time. Please check that the server is running and refresh the page.'
   } else {
-    errorMessage.style.display = 'none'
+    errorMessage.innerText = ''
   }
 }
