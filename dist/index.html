@@ -30,7 +30,7 @@
               <input id="pass-traveler" type="password" name="" value="travel">
               <button id="button-traveler" class="button-secondary" type="button" name="button">Login</button>
             </article>
-            <div class="line"></div>
+            <!-- <div class="line"></div>
             <article class="login-form">
               <h3>Agent Login</h3>
               <label for="name-agent">Username</label>
@@ -38,7 +38,7 @@
               <label for="pass-agent">Password</label>
               <input id="pass-agent" type="password" name="" value="travel">
               <button id="button-agent" class="button-secondary" type="button" name="button">Login</button>
-            </article>
+            </article> -->
           </div>
         </section>
       </section>
@@ -46,13 +46,13 @@
         <article class="welcome" id="welcome-user">
           <h2 id="welcome-message">Welcome User!</h2>
           <div class="welcome-spending">
-            <div>
+            <!-- <div>
               <h3>Last Year's Spending:</h3>
               <p id="spending-previous-amount">$400.55</p>
-            </div>
+            </div> -->
             <div>
               <h3>This Year's Spending:</h3>
-              <p id="spending-present-amount">$400.55</p>
+              <p id="spending-present-amount"></p>
             </div>
           </div>
         </article>
@@ -80,7 +80,7 @@
                 <select id="planning-travelers" class="planning-dropdown" name="Travelers"></select>
               </div>
             </div>
-            <h3 id="planning-cost" class="planning-cost">Estimated Cost: $0.00</h3>
+            <h3 id="planning-cost" class="planning-cost">Estimated Cost: $</h3>
             <div class="planning-bottom">
               <button id="button-add-trip" class="button-primary" form="planning-form" type="button" name="button"
                 disabled>Add to Trips</button>
@@ -89,14 +89,15 @@
         </article>
         <section class="trip-user display-previous" id="trip-user">
           <div class="trip-form">
-            <label for="trip-dropdown">Select Trips to View</label>
-            <select class="trip-dropdown" id="trip-dropdown" name="">
+            <ul class="trips" id="trips-all">All Trips</ul>
+            <!-- <label for="trip-dropdown">Select Trips to View</label> -->
+            <!-- <select class="trip-dropdown" id="trip-dropdown" name="">
               <option value="previous">Previous</option>
               <option value="present">Present</option>
               <option value="upcoming">Upcoming</option>
               <option value="pending">Pending</option>
-            </select>
-            <p id="trip-dropdown-message">There is nothing to show.</p>
+            </select> -->
+            <!-- <p id="trip-dropdown-message">There is nothing to show.</p> -->
           </div>
           <template id="trip-template">
             <article class="trip-card">
@@ -115,7 +116,7 @@
               </div>
             </article>
           </template>
-          <article id="trip-past" class="trip-article past">
+          <!-- <article id="trip-past" class="trip-article past">
             <h2>Past</h2>
           </article>
           <article id="trip-present" class="trip-article present">
@@ -126,10 +127,10 @@
           </article>
           <article id="trip-pending" class="trip-article pending">
             <h2>Pending</h2>
-          </article>
+          </article> -->
         </section>
       </section>
-      <section class="dashboard-agent hidden display-trips">
+      <!-- <section class="dashboard-agent hidden display-trips">
         <article class="welcome" id="welcome-agent">
           <h2>Welcome Agent!</h2>
           <h3>YTD Income:</h3>
@@ -190,7 +191,7 @@
             </template>
           </div>
         </article>
-      </section>
+      </section> -->
     </main>
     <script src="bundle.js"></script>
   </body>
