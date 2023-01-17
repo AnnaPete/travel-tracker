@@ -6,7 +6,6 @@ import './images/airplane-logo-png-5.png';
 
 import Traveler from './Traveler';
 import Trip from './Trip';
-import Destination from './Destination';
 
 // QUERY SELECTORS
 // login
@@ -23,7 +22,6 @@ const estimatedCostOfTrip = document.querySelector('#planning-cost')
 const durationDropdown = document.querySelector('#planning-duration')
 const travelersDropdown = document.querySelector('#planning-travelers')
 const tripsDisplay = document.querySelector('#trips-all')
-const totalSpentPrevious = document.querySelector('#spending-previous-amount')
 const totalSpentPresent = document.querySelector('#spending-present-amount')
 
 // GLOBAL VARIABLES
@@ -31,7 +29,6 @@ let allTrips
 let allDestinations
 let currentTraveler
 let currentTravelerID = 1
-let currentYear = '2020'
 
 // EVENT LISTENERS
 travelerLoginButton.addEventListener('click', authenticateUser)
@@ -41,6 +38,8 @@ dateInput.addEventListener('change', validateForm)
 destinationDropdown.addEventListener('change', validateForm)
 travelersDropdown.addEventListener('change', validateForm)
 durationDropdown.addEventListener('change', validateForm)
+// accessibility branch only
+// window.addEventListener('load', loadTravelerDashboard)
 
 function displayTravelerTrips() {
   let singleTravelerResponse = fetchApi.getSpecificTraveler(currentTravelerID)
