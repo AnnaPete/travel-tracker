@@ -20,8 +20,8 @@ class Traveler {
     let totalCost = 0
     this.trips.forEach(trip => {
       const tripDate = new Date(trip.date)
-      const tripYear = tripDate.getFullYear()
-      if (tripYear === year && trip.status !== 'pending') {
+      const tripYear = tripDate.getFullYear().toString()
+      if (tripYear === year && trip.status != 'pending') {
         const totalPerTrip = this.calculateCostPerTrip(trip, destinations)
         totalCost += totalPerTrip
       } else if (!year && trip.status !== 'pending') {

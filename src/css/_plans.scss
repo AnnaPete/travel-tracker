@@ -1,0 +1,112 @@
+.planning-user,
+.planning-agent {
+  background-color: $color-jungle-green;
+  border-radius: 0.5rem;
+  color: $color-almond;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 1rem;
+
+  .button {
+    @include button-primary;
+  }
+}
+
+.planning {
+  &-bottom {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &-cost {
+    margin-bottom: 0.4rem;
+  }
+
+  &-date {
+    font-size: 14px;
+    height: 1.7rem;
+  }
+
+  &-dropdown {
+    font-size: 14px;
+    height: 2rem;
+    min-width: 3rem;
+  }
+
+  &-inputs {
+    @include grid-presets-4x1;
+    grid-gap: 1rem;
+    grid-template-areas:
+      "date destination duration travelers";
+    width: 100%;
+  }
+
+  &-text {
+    font-size: 14px;
+    margin: 0.5rem 0 0.5 0;
+  }
+
+  &-title {
+    margin: 0;
+  }
+}
+
+.form-section {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#input-date {
+  grid-area: date;
+}
+
+#input-destination {
+  grid-area: destination;
+}
+
+#input-duration {
+  grid-area: duration;
+}
+
+#input-travelers {
+  grid-area: travelers;
+}
+
+// MEDIA SCREEN SIZES
+@media screen and (max-width: 1000px) {
+  .planning {
+    &-inputs {
+      @include grid-presets-2x2;
+      grid-template-areas:
+        "date destination"
+        "duration travelers";
+    }
+
+    &-text {
+      margin: 0.5rem 0 0.5rem 0;
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .planning {
+    &-inputs {
+      display: block;
+    }
+
+    &-dropdown {
+      max-width: 14rem;
+    }
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .planning-dropdown {
+    max-width: 12rem;
+  }
+}
