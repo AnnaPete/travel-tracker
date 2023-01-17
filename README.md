@@ -40,7 +40,7 @@ I started to incorporate agent functionality, but had to put it to the side unti
 
 ## Installation Instructions
 
-This application requires a local server to be running independent of GitHub pages. Clone [this repository](git@github.com:turingschool-examples/travel-tracker-api.git) and follow the instructions included in the ReadMe to install and start the API. Once the server is running on your local machine, the site can be visited by entering these commands into the Terminal once you've cloned down [the project repository](git@github.com:AnnaPete/travel-tracker.git) and entered the directory: <code>npm install</code><br>  <code>npm start</code>
+This application requires a local server to be running independent of GitHub pages. Clone [this repository](git@github.com:turingschool-examples/travel-tracker-api.git) and follow the instructions included in the ReadMe to install and start the API. Once the server is running on your local machine, the site can be visited by entering these commands into the Terminal once you've cloned down [the project repository](git@github.com:AnnaPete/travel-tracker.git) and entered the directory: <code>npm install</code>, then  <code>npm start</code>
 
 ## Author
 
