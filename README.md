@@ -15,12 +15,13 @@ JavaScript, Fetch, JSON, Mocha, Chai, HTML, CSS/SCSS, Normalize, Webpack
 ### Traveler Dashboard
 When a traveler visits their dashboard, they will see a welcome message with their name, as well as the amounts they've spent on trips for the previous year and this year. The user will also be able to see a form for creating a new trip, as well as all of their previous, current, and pending trips.
 
-<img width="1899" alt="Screenshot 2023-01-17 at 9 47 40 AM" src="https://user-images.githubusercontent.com/107816053/212961201-a42d067a-ac88-4fd1-ad76-4e4f044f8252.png">
+<img width="1899" alt="Travel-Tracker Traveler Dashboard" src="https://user-images.githubusercontent.com/107816053/212961201-a42d067a-ac88-4fd1-ad76-4e4f044f8252.png">
 
 
 ### Login Screen
 When the website is first loaded, a user will see the login screen below with pre-filled input fields for ease of use.
 
+<img width="1899" alt="Travel-Tracker Login Screen" src="https://user-images.githubusercontent.com/107816053/212961758-9292dafe-9f9b-4440-b3f1-26ac6d04c553.png">
 
 
 <details>
